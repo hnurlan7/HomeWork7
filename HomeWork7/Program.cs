@@ -27,23 +27,38 @@ namespace HomeWork7
             foreach (Book book in books)
             {
                 Console.WriteLine(book.GetInfo());
+            }
+            Console.WriteLine("\n1. Kitablari qiymete gore filterle \n2. Butun kitablari goster \n0. Proqrami bagla");
+            int menu = GetInputInt("Davam etmek ucun birini secin: ", 0, 2);
+            do
+            {
 
-                Console.WriteLine("\n1. Kitablari qiymete gore filterle \n2. Butun kitablari goster \n0. Proqrami bagla");
-                int menu = GetInputInt("Davam etmek ucun birini secin: ", 0, 2);
 
                 if (menu == 1)
                 {
                     double minPrice = GetInputDouble("Min qiymet qeyd edin: ", 0);
                     double maxPrice = GetInputDouble("Max qiymet qeyd edin: ", minPrice);
-                    if (price)
+                    foreach (Book newBook1 in books)
                     {
-
+                        if (newBook1.price > minPrice && newBook1.price < maxPrice)
+                        {
+                            Console.WriteLine(newBook1.GetInfo());
+                        }
                     }
-                    
                 }
-            }
+                foreach (Book book in books)
+                {
+                    if (menu == 2)
+                    {
+                        Console.WriteLine(book.GetInfo());
+                    }
+                }
+                Console.WriteLine("\n1. Kitablari qiymete gore filterle \n2. Butun kitablari goster \n0. Proqrami bagla");
+                menu = GetInputInt("Davam etmek ucun birini secin: ", 0, 2);
+            } while (menu != 0);
 
-            
+
+
 
 
             static string GetInputString(string name, int min, int max = int.MaxValue)
